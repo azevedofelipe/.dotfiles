@@ -26,9 +26,9 @@ exec --no-startup-id dex --autostart --environment i3
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
+exec --no-startup-id xautolock -time 1 -locker "i3lock -i /home/felipe/Wallpapers/The_Artists_Garden_at_Eragny-lock.png --nofork" -detectsleep -notifier "playerctl status | grep -q Playing && exit 1"
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- sh -c 'i3lock -i /home/felipe/Wallpapers/The_Artists_Garden_at_Eragny-lock.png --nofork'
 bindsym $mod+m exec i3lock -i /home/felipe/Wallpapers/The_Artists_Garden_at_Eragny-lock.png
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -224,6 +224,9 @@ exec --no-startup-id firefox
 
 exec --no-startup-id i3-msg "workspace 2; append_layout ~/.i3/workspace-2.json"
 exec --no-startup-id alacritty
+
+# Low battery popup
+ exec --no-startup-id i3-battery-popup -n -D -L 20 -l 10 
 
 # Work config load
 bindsym $mod+o exec --no-startup-id /home/felipe/scripts/start_work.sh
