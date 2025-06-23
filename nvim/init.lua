@@ -97,8 +97,8 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })
 
 -- Switch tab pages (not buffers inside tabs)
-vim.keymap.set('n', '<Space><Tab>', ':tabnext<CR>', { silent = true })
-vim.keymap.set('n', '<Space><S-Tab>', ':tabprevious<CR>', { silent = true })
+vim.keymap.set('n', '<Space><Tab>', ':bnext<CR>', { silent = true })
+vim.keymap.set('n', '<Space><S-Tab>', ':bprev<CR>', { silent = true })
 vim.keymap.set('n', '<Space>bj', ':BufferLinePick<CR>', { silent = true })
 
 -- Diagnostic keymaps
@@ -357,8 +357,8 @@ require('lazy').setup({
         --
         defaults = {
           mappings = {
-            i = { ['<enter>'] = require('telescope.actions').select_tab },
-            n = { ['<enter>'] = require('telescope.actions').select_tab },
+            i = { ['<enter>'] = require('telescope.actions').select_default },
+            n = { ['<enter>'] = require('telescope.actions').select_default },
           },
         },
         pickers = {
@@ -867,7 +867,11 @@ require('lazy').setup({
   {
     'Mofiqul/dracula.nvim',
     config = function()
-      require('dracula').setup {}
+      require('dracula').setup {
+        overrides = {
+          Comment = { fg = '#b6a0d2' }, -- faded orange
+        },
+      }
 
       vim.cmd 'colorscheme dracula'
     end,
